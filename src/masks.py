@@ -9,7 +9,7 @@ def get_mask_card_number(card_number: str) -> str:
             new_card_number.append("*")
 
     for index, symbol in enumerate(new_card_number):
-        if index not in [4, 9, 14]:
+        if index not in [4, 8, 12]:
             mask_card_number.append(symbol)
         else:
             mask_card_number.append(" ")
