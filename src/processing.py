@@ -13,7 +13,7 @@ def filter_by_state(data_dictionary: list, state: Optional[list] = "EXECUTED") -
     return filtering_by_state
 
 
-def sort_by_date(data_dictionary: list, reverse_flag: bool = False) -> list:
+def sort_by_date(data_dictionary: list, reverse_flag: bool = True) -> list:
     """Принимает список словарей и необязательный параметр, задающий порядок сортировки
     (по умолчанию — убывание). Функция должна возвращать новый список, отсортированный по дате
     """
