@@ -1,7 +1,7 @@
 from typing import Optional
 
 
-def filter_by_state(data_dictionary: list, state: Optional[list] = None) -> list:
+def filter_by_state(data_dictionary: list, state: Optional[list] = "EXECUTED") -> list:
     """Принимает список словарей и опционально значение для ключа.
     Функция возвращает новый список словарей, содержащий только те словари, у которых ключ
     state соответствует указанному значению
@@ -20,3 +20,4 @@ def sort_by_date(data_dictionary: list, reverse_flag: bool = False) -> list:
 
     data_dictionary.sort(key=lambda dictionary: dictionary['date'], reverse=reverse_flag)
     return data_dictionary
+
