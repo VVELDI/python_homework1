@@ -20,4 +20,3 @@ def sort_by_date(data_dictionary: list, reverse_flag: bool = True) -> list:
 
     data_dictionary.sort(key=lambda dictionary: dictionary['date'], reverse=reverse_flag)
     return data_dictionary
-
