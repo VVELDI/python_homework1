@@ -24,9 +24,13 @@ def mask_account_card(card: str) -> str:
     return mask_number
 
 
-def get_date(date: str) -> str:
+def get_date(date_: str) -> str:
     """Приводит дату к формату ДД.ММ.ГГГГ"""
-    return datetime.datetime.strptime(date, "%Y-%m-%dT%H:%M:%S.%f").strftime("%d.%m.%Y")
-
-
-print(mask_account_card("Счет 73654108430135874305"))
+    try:
+        new_date = datetime.datetime.strptime(date_, "%Y-%m-%dT%H:%M:%S.%f").strftime("%d.%m.%Y")
+    except ValueError:
+        return "Формат даты неверный"
+    except TypeError:
+        return "Формат даты неверный"
+    else:
+        return new_date
