@@ -3,7 +3,7 @@ def get_mask_card_number(card_number: str) -> str:
 
     # Исключение ошибок с длиной и наличием символов, отличающихся от digit
     if len(card_number) != 16 or not card_number.isdigit():
-        return "Недопустимый номер карты"
+        return "Данные не корректны"
 
     else:
         new_card_number = []
@@ -27,7 +27,7 @@ def get_mask_card_number(card_number: str) -> str:
 def get_mask_account(account_number: str) -> str:
     """Принимает на вход номер счета и возвращает его маску."""
     if len(account_number) != 20 or not account_number.isdigit():
-        return "Недопустимый номер счета"
+        return "Данные не корректны"
 
     else:
         new_account_number = []
