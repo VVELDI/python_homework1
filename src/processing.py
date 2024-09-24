@@ -1,7 +1,6 @@
 from typing import Optional
 
 import src.widget
-from src import widget
 
 
 def filter_by_state(data_dictionary: list, state: Optional[list] = "EXECUTED") -> list:
