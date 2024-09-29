@@ -1,4 +1,7 @@
 def filter_by_currency(transactions: list, currency: str) -> list:
+    """Принимает на вход список словарей, представляющих транзакции,
+       возвращает итератор, который поочередно выдает транзакции,
+       где валюта операции соответствует заданной (например, USD)"""
     if not transactions or len(transactions) == 0:
         return "Транзакции отсутствуют"
     flag = 0
@@ -18,6 +21,7 @@ def filter_by_currency(transactions: list, currency: str) -> list:
 
 
 def transaction_descriptions(transactions: list) -> str:
+    """Принимает список словарей с транзакциями и возвращает описание каждой операции по очереди"""
     for transaction in transactions:
         try:
             if transaction["description"]:
@@ -30,6 +34,10 @@ def transaction_descriptions(transactions: list) -> str:
 
 
 def card_number_generator(initial_value: int, final_value: int) -> str:
+    """Выдает номера банковских карт. Генератор может сгенерировать номера карт в заданном диапазоне.
+    На входе начальное и конечное значение, на выходе - номер карты"""
+    if 1 > initial_value or initial_value > 9999999999999999 or final_value < 1 or final_value > 9999999999999999:
+        return "Указанные значения выходят за предел диапазона"
     while initial_value <= final_value:
         list_of_numbers_card = [0 for x in range(16)]
         list_of_numbers_card.append(initial_value)

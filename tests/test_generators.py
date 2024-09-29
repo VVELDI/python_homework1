@@ -77,8 +77,12 @@ def test_card_number_generator(initial_value, final_value):
 
 def test_card_number_generator_beyond_the_iteration():
     card_number_beyond_the_iteration = src.generators.card_number_generator(1, 2)
+    card_number_invalid_range = src.generators.card_number_generator(9999999999999999, 10000000000000000)
     assert (next(card_number_beyond_the_iteration)) == "0000 0000 0000 0001"
     assert (next(card_number_beyond_the_iteration)) == "0000 0000 0000 0002"
     with pytest.raises(StopIteration) as exc_info:
         print(next(card_number_beyond_the_iteration))
     assert str(exc_info.value) == "Выход за пределы генерации"
+    with pytest.raises(StopIteration) as exc_info:
+        print(next(card_number_invalid_range))
+    assert str(exc_info.value) == "Указанные значения выходят за предел диапазона"
