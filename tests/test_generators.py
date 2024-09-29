@@ -82,6 +82,3 @@ def test_card_number_generator_beyond_the_iteration():
     with pytest.raises(StopIteration) as exc_info:
         print(next(card_number_beyond_the_iteration))
     assert str(exc_info.value) == "Выход за пределы генерации"
-
-
-
