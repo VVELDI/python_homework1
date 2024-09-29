@@ -1,4 +1,5 @@
 import pytest
+
 from src import masks
 
 
@@ -25,4 +26,4 @@ def test_get_mask_account(account_number, expected):
 
 
 def test_get_mask_account_number(default_account_number):
-    assert  masks.get_mask_account(default_account_number) == "**4305"
+    assert masks.get_mask_account(default_account_number) == "**4305"
