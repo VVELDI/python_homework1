@@ -1,5 +1,7 @@
 import datetime
+
 import pytest
+
 from src.decorators import log  # Импортируем декоратор
 
 
