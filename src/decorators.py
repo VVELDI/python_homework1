@@ -4,43 +4,46 @@ import datetime
 def log(filename=None):
     def decorator(func):
         def wrapper(*args, **kwargs):
+            func_name = func.__name__  # Имя оригинальной функции
+
             if filename:
                 time_start = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
                 with open(filename, 'a', encoding='utf-8') as file:
-                    file.write(f'Начало работы функции - {func.__name__} : {time_start}\n ')
+                    file.write(f'Начало работы функции - {func_name} : {time_start}\n')
                 try:
                     result_func = func(*args, **kwargs)
                 except Exception as exc_info:
                     time_end = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
                     with open(filename, 'a', encoding='utf-8') as file:
-                        file.write(f'Функция {func.__name__} завершилась с ошибкой - {exc_info} : {time_end}\n ')
-                        file.write(f'Входные  параметры: {args}, {kwargs}\n ')
+                        file.write(f'Функция {func_name} завершилась с ошибкой - {exc_info} : {time_end}\n')
+                        file.write(f'Входные параметры: {args}, {kwargs}\n')
                         file.write(f'{"-" * 70}\n')
                     raise
                 else:
                     time_end = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
                     with open(filename, 'a', encoding='utf-8') as file:
-                        file.write(f'Результат выполнения функции: {result_func}\n ')
-                        file.write(f'Функция {func.__name__} завершилась без ошибок: {time_end}\n')
+                        file.write(f'Результат выполнения функции: {result_func}\n')
+                        file.write(f'Функция {func_name} завершилась без ошибок: {time_end}\n')
                         file.write(f'{"-" * 70}\n')
                     return result_func
             else:
                 time_start = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
-                print(f'Начало работы функции - {func.__name__} : {time_start}')
+                print(f'Начало работы функции - {func_name} : {time_start}')
                 try:
                     result_func = func(*args, **kwargs)
                 except Exception as exc_info:
                     time_end = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
-                    print(f'Функция {func.__name__} завершилась с ошибкой - {exc_info} : {time_end}')
-                    print(f'Входные  параметры: {args}, {kwargs} ')
+                    print(f'Функция {func_name} завершилась с ошибкой - {exc_info} : {time_end}')
+                    print(f'Входные параметры: {args}, {kwargs}')
                     print(f'{"-" * 70}\n')
                     raise
                 else:
                     time_end = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
                     print(f"Результат выполнения функции: {result_func}")
-                    print(f'Функция {func.__name__} завершилась без ошибок : {time_end}')
+                    print(f'Функция {func_name} завершилась без ошибок: {time_end}')
                     print(f'{"-" * 70}\n')
                     return result_func
-        return wrapper
-    return decorator
 
+        return wrapper
+
+    return decorator
