@@ -1,4 +1,5 @@
 import os
+
 import requests
 from dotenv import load_dotenv
 
@@ -23,9 +24,9 @@ def convert_currency(amount, from_currency, to_currency="RUB"):
         if data.get('success'):
             return data['result']
         else:
-            raise Exception(f"Ошибка при конвертации валюты: {data.get('error', 'Неизвестная ошибка')}")
+            raise Exception(f"Ошибка при конвертации валюты: {str(data.get('error', 'Неизвестная ошибка'))}")
     else:
-        raise Exception(f"Ошибка API: {response.status_code}, {response.json()}")
+        raise Exception(f"Ошибка API: {response.status_code}, {str(response.json())}")
 
 
 def get_transaction_amount_in_rubles(transaction):
