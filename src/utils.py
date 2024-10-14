@@ -13,7 +13,7 @@ log_file = os.path.join(log_dir, 'utils.log')
 
 # Создаем обработчик файла с указанием кодировки и режимом 'w' для перезаписи
 file_handler = logging.FileHandler(log_file, mode='w', encoding='utf-8')
-file_handler.setLevel(logging.INFO)
+file_handler.setLevel(logging.DEBUG)
 
 # Формат логирования: [время] [модуль] [уровень] [сообщение]
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -21,7 +21,7 @@ file_handler.setFormatter(formatter)
 
 # Настройка основного логгера
 logger = logging.getLogger('utils')
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.DEBUG)
 logger.addHandler(file_handler)
 
 
@@ -53,5 +53,9 @@ def load_transactions_from_json(file_path: str) -> list:
         logger.exception('Произошла ошибка при чтении файла %s: %s', file_path, str(e))
         print(f"Произошла ошибка при чтении файла {file_path}: {str(e)}")
         return []
+
+
+
+
 
 
