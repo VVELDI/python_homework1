@@ -5,7 +5,7 @@ from typing import Optional
 import src.widget
 
 
-def filter_by_state(data_dictionary: list, state: Optional[list] = "EXECUTED") -> list:
+def filter_by_state(data_dictionary: list, state: Optional[str] = "EXECUTED") -> list:
     """Принимает список словарей и опционально значение для ключа.
     Функция возвращает новый список словарей, содержащий только те словари, у которых ключ
     state соответствует указанному значению
@@ -15,7 +15,7 @@ def filter_by_state(data_dictionary: list, state: Optional[list] = "EXECUTED") -
     else:
         filtering_by_state = []
         for dictionary in data_dictionary:
-            if dictionary['state'] == state:
+            if dictionary.get('state') == state:
                 filtering_by_state.append(dictionary)
         return filtering_by_state
 

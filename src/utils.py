@@ -1,5 +1,5 @@
-import logging
 import json
+import logging
 import os
 
 # Настройка логирования
@@ -26,6 +26,8 @@ logger.addHandler(file_handler)
 
 
 def load_transactions_from_json(file_path: str) -> list:
+    """Функция для загрузки транзакций из JSON файла. Принимает путь к файлу и возвращает список транзакций.
+       Если файл не найден, возвращает пустой список."""
     logger.info('Функция load_transactions_from_json вызвана с аргументом: %s', file_path)
 
     if not os.path.exists(file_path):
@@ -53,9 +55,3 @@ def load_transactions_from_json(file_path: str) -> list:
         logger.exception('Произошла ошибка при чтении файла %s: %s', file_path, str(e))
         print(f"Произошла ошибка при чтении файла {file_path}: {str(e)}")
         return []
-
-
-
-
-
-
