@@ -1,20 +1,31 @@
-def filter_by_currency(transactions: list, currency: str) -> list:
-    """Принимает на вход список словарей, представляющих транзакции,
-       возвращает итератор, который поочередно выдает транзакции,
-       где валюта операции соответствует заданной (например, USD)"""
-    if not transactions or len(transactions) == 0:
-        return "Транзакции отсутствуют"
-    flag = 0
+def filter_by_currency(transactions: list, currency: str):
+    """
+    Фильтрует список транзакций по указанной валюте и возвращает генератор с транзакциями этой валюты.
+
+    :param transactions: Список словарей, представляющих транзакции (JSON, XLSX или CSV формат).
+    :param currency: Валюта, по которой нужно отфильтровать (например, USD).
+    :return: Генератор транзакций, где валюта соответствует указанной.
+    """
+    found = False
     for transaction in transactions:
         try:
-            if transaction['operationAmount']['currency']['code'] == currency:
-                yield transaction
-            else:
-                flag += 1
+            # JSON формат
+            if 'operationAmount' in transaction and 'currency' in transaction['operationAmount']:
+                if transaction['operationAmount']['currency']['code'] == currency:
+                    yield transaction
+                    found = True
+
+            # CSV, XLSX форматы
+            elif 'currency_code' in transaction:
+                if transaction['currency_code'] == currency:
+                    yield transaction
+                    found = True
+
         except KeyError:
-            return "Транзакции отсутствуют"
-    if flag == len(transactions):
-        return "Транзакции в заданной валюте отсутствуют"
+            continue
+
+    if not found:
+        yield "Транзакции в заданной валюте отсутствуют"
 
 
 # filtered_transactions = (filter_by_currency(transaction, "Валюта")) - для дальнейшего использования
