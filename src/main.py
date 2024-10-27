@@ -4,7 +4,8 @@ from src import generators, processing, transaction_parser, utils
 project_root = os.path.dirname(os.path.abspath(__file__))
 
 # Путь к директории с данными
-data_dir = os.path.join(project_root, 'data')
+data_dir = os.path.join(project_root, '..', 'data')
+data_dir = os.path.abspath(data_dir)
 
 # Создаем переменные для различных файлов
 json_file_path = os.path.join(data_dir, 'operations.json')
